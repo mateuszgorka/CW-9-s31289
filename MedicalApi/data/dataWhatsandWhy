@@ -1,0 +1,8 @@
+﻿Co to jest DbContext?
+
+DbContext to główna klasa, która:
+
+- lączy Twoją aplikację z bazą danych
+- pozwala EF Core „rozumieć” Twoje modele
+- umożliwia wykonywanie zapytań (np. Add, Update, Where, SaveChanges)
+

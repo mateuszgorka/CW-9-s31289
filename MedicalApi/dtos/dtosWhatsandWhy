@@ -1,0 +1,5 @@
+﻿
+Modele (Entity) – to klasy powiązane z bazą danych (EF Core je rozumie i tworzy z nich tabele)
+DTO – to klasy, które wysyłasz/odbierasz w API (JSON), np. do klienta, frontendu czy testów
+
+
