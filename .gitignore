@@ -399,3 +399,52 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+# Rider
+.idea/
+.idea/**
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+out/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# ASP.NET Core environment
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json
+
+# Entity Framework
+Migrations/
+
+# Dotnet-specific
+.vs/
+*.db
+*.sqlite
+*.pdb
+
+# Logs
+*.log
+
+# Optional: secrets
+secrets.json
+
+# Test Results
+TestResults/
+*.coverage
+*.coveragexml
+
+# Dotnet tools
+tools/
+
