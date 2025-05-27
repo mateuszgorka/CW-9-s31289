@@ -1,19 +1,13 @@
-﻿using MedicalApi.Models;
+﻿using MedicalApi.dtos;
 
-namespace MedicalApi.dtos;
+namespace MedicalApi.Dtos;
 
 public class AddPrescriptionRequest
 {
-    public Patient Patient { get; set; }
-    public int IdDoctor { get; set; }
-    public DateTime Date { get; set; }
-    public DateTime DueDate { get; set; }
-    public List<PrescriptionMedicamentDto> Medicaments { get; set; }
-
-    public class PrescriptionMedicamentDto
-    {
-        public int IdMedicament { get; set; }
-        public int Dose { get; set; }
-        public string Description { get; set; }
-    }
+    public PatientDto Patient { get; set; } = default!;
+    public int IdDoctor { get; set; } = default!;
+    public DateTime Date { get; set; } = default!;
+    public DateTime DueDate { get; set; } = default!;
+    public List<PrescriptionMedicamentDto> Medicaments { get; set; } = default!;
+    
 }

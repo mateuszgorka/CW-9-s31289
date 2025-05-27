@@ -1,4 +1,7 @@
-﻿using MedicalApi.dtos;
+﻿
+using MedicalApi.dtos;
+using MedicalApi.Dtos;
+
 
 namespace MedicalApi.Services;
 

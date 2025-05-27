@@ -1,6 +1,6 @@
 ﻿using MedicalApi.Models;
 
-namespace MedicalApi.dtos;
+namespace MedicalApi.Models;
 
 public class PrescriptionMedicament
 {

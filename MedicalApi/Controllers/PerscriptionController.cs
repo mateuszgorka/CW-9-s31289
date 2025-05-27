@@ -1,4 +1,5 @@
 ﻿using MedicalApi.dtos;
+using MedicalApi.Dtos;
 using MedicalApi.Services;
 using Microsoft.AspNetCore.Mvc;
 

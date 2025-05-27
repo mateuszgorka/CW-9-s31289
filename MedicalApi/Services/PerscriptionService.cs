@@ -1,5 +1,6 @@
-﻿using MedicalApi.data;
+﻿using MedicalApi.Data;
 using MedicalApi.dtos;
+using MedicalApi.Dtos;
 using MedicalApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,27 +18,43 @@ public class PrescriptionService : IPrescriptionService
     public async Task AddPrescriptionAsync(AddPrescriptionRequest request)
     {
         if (request.Medicaments.Count > 10)
-            throw new ArgumentException("Maximum 10 medicaments allowed");
+            throw new ArgumentException("Maksymalnie 10 lekow");
 
         if (request.DueDate < request.Date)
-            throw new ArgumentException("DueDate must be after or equal to Date");
+            throw new ArgumentException("Po terminie waznosci");
 
         foreach (var med in request.Medicaments)
         {
             var exists = await _context.Medicaments.AnyAsync(m => m.IdMedicament == med.IdMedicament);
-            if (!exists) throw new ArgumentException($"Medicament {med.IdMedicament} not found");
+            if (!exists)
+                throw new ArgumentException($"Lek {med.IdMedicament} nie znaleziony");
         }
 
-        var patient = await _context.Patients
-            .FirstOrDefaultAsync(p => p.IdPatient == request.Patient.IdPatient)
-            ?? request.Patient;
+        // -> czy pacijent istnieje [?]
+        var patient = await _context.Patients.FirstOrDefaultAsync(p =>
+            p.FirstName == request.Patient.FirstName &&
+            p.LastName == request.Patient.LastName &&
+            p.Birthdate.Date == request.Patient.Birthdate.Date);
+
+        if (patient == null)
+        {
+            patient = new Patient
+            {
+                FirstName = request.Patient.FirstName,
+                LastName = request.Patient.LastName,
+                Birthdate = request.Patient.Birthdate
+            };
+
+            await _context.Patients.AddAsync(patient);
+            await _context.SaveChangesAsync();
+        }
 
         var prescription = new Prescription
         {
             Date = request.Date,
             DueDate = request.DueDate,
             IdDoctor = request.IdDoctor,
-            Patient = patient,
+            IdPatient = patient.IdPatient,
             PrescriptionMedicaments = request.Medicaments.Select(m => new PrescriptionMedicament
             {
                 IdMedicament = m.IdMedicament,
@@ -70,17 +87,17 @@ public class PrescriptionService : IPrescriptionService
             Birthdate = patient.Birthdate,
             Prescriptions = patient.Prescriptions
                 .OrderBy(p => p.DueDate)
-                .Select(p => new PatientDetailsResponse.PrescriptionDto
+                .Select(p => new PrescriptionDto
                 {
                     IdPrescription = p.IdPrescription,
                     Date = p.Date,
                     DueDate = p.DueDate,
-                    Doctor = new PatientDetailsResponse.DoctorDto
+                    Doctor = new DoctorDto
                     {
                         IdDoctor = p.Doctor.IdDoctor,
                         FirstName = p.Doctor.FirstName
                     },
-                    Medicaments = p.PrescriptionMedicaments.Select(pm => new PatientDetailsResponse.MedicamentDto
+                    Medicaments = p.PrescriptionMedicaments.Select(pm => new MedicamentDto
                     {
                         IdMedicament = pm.Medicament.IdMedicament,
                         Name = pm.Medicament.Name,
