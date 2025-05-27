@@ -420,11 +420,6 @@ out/
 .DS_Store
 Thumbs.db
 
-# ASP.NET Core environment
-appsettings.Development.json
-appsettings.Local.json
-appsettings.*.json
-
 
 # Dotnet-specific
 .vs/
@@ -435,14 +430,9 @@ appsettings.*.json
 # Logs
 *.log
 
-# Optional: secrets
-secrets.json
-
 # Test Results
 TestResults/
 *.coverage
 *.coveragexml
 
-# Dotnet tools
-tools/
 
