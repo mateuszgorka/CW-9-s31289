@@ -425,8 +425,6 @@ appsettings.Development.json
 appsettings.Local.json
 appsettings.*.json
 
-# Entity Framework
-Migrations/
 
 # Dotnet-specific
 .vs/
