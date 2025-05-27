@@ -29,7 +29,9 @@ public class PrescriptionController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
+    
+    
+    //api/prescriptions/patient/{id}
     [HttpGet("patient/{id}")]
     public async Task<IActionResult> GetPatientDetails(int id)
     {
