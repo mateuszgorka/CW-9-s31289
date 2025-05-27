@@ -1,0 +1,29 @@
+﻿# 📦 Dodaj podstawowy pakiet Entity Framework Core
+dotnet add package Microsoft.EntityFrameworkCore
+
+# 📦 Dodaj provider dla SQL Server
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+# 🛠 Dodaj design-time tools – potrzebne do migracji
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+#⚙️ (Jeśli dotnet ef nie działa – zainstaluj EF CLI globalnie)
+dotnet tool install --global dotnet-ef
+
+# 🧱 Utwórz pierwszą migrację (np. po stworzeniu modeli i DbContext)
+dotnet ef migrations add <Nazwa migracji jaka chce>
+
+# 🗃 Zastosuj migracje i utwórz/zaktualizuj bazę danych
+dotnet ef database update
+
+# ✏️ Stwórz kolejną migrację, np. po zmianach w modelach
+dotnet ef migrations add <Jak z commitem sobie zmieniam nazwy jakie chce>
+
+# 🔁 Zaktualizuj bazę danych do najnowszej migracji
+dotnet ef database update
+
+# 🧹 Usuń ostatnią migrację, jeśli została utworzona błędnie i nie została zaaplikowana
+dotnet ef migrations remove
+
+# 🔍 Sprawdź informacje o DbContext (czy działa)
+dotnet ef dbcontext info

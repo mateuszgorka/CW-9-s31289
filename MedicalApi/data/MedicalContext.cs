@@ -21,7 +21,7 @@ public class MedicalContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // ✅ KLUCZE GŁÓWNE
+      // ->>> klucze
         modelBuilder.Entity<Doctor>().HasKey(d => d.IdDoctor);
         modelBuilder.Entity<Patient>().HasKey(p => p.IdPatient);
         modelBuilder.Entity<Medicament>().HasKey(m => m.IdMedicament);
@@ -29,7 +29,7 @@ public class MedicalContext : DbContext
         modelBuilder.Entity<PrescriptionMedicament>()
             .HasKey(pm => new { pm.IdPrescription, pm.IdMedicament });
 
-        // ✅ SEED DANYCH
+      // ->>> seed
         modelBuilder.Entity<Doctor>().HasData(new Doctor
         {
             IdDoctor = 1,
